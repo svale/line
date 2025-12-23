@@ -1,11 +1,39 @@
 let currentScene = 1;
 const totalScenes = 7;
 
+// Auto-advance timer setting (in milliseconds)
+const AUTO_ADVANCE_TIME = 3000; // 3 seconds
+let autoAdvanceTimer = null;
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     updateProgressDots();
     createSnowflakes();
+    startAutoAdvance(); // Start auto-advance timer
 });
+
+// Start auto-advance timer
+function startAutoAdvance() {
+    // Clear any existing timer
+    if (autoAdvanceTimer) {
+        clearTimeout(autoAdvanceTimer);
+    }
+
+    // Only auto-advance if not on the last scene
+    if (currentScene < totalScenes) {
+        autoAdvanceTimer = setTimeout(() => {
+            nextScene();
+        }, AUTO_ADVANCE_TIME);
+    }
+}
+
+// Stop auto-advance timer
+function stopAutoAdvance() {
+    if (autoAdvanceTimer) {
+        clearTimeout(autoAdvanceTimer);
+        autoAdvanceTimer = null;
+    }
+}
 
 // Navigate to next scene
 function nextScene() {
@@ -24,6 +52,7 @@ function nextScene() {
             currentScene++;
             nextElement.classList.add('active');
             updateProgressDots();
+            startAutoAdvance(); // Restart auto-advance timer
         }, 300);
     }
 }
@@ -43,6 +72,7 @@ function previousScene() {
             currentScene--;
             prevElement.classList.add('active');
             updateProgressDots();
+            startAutoAdvance(); // Restart auto-advance timer
         }, 300);
     }
 }
@@ -61,6 +91,7 @@ function restart() {
         currentScene = 1;
         firstElement.classList.add('active');
         updateProgressDots();
+        startAutoAdvance(); // Restart auto-advance timer
     }, 300);
 }
 
@@ -136,17 +167,3 @@ function createSnowflakes() {
     }
 }
 
-// Optional: Auto-advance after time (commented out by default)
-/*
-function autoAdvance() {
-    const autoAdvanceTime = 5000; // 5 seconds
-    setTimeout(() => {
-        if (currentScene < totalScenes) {
-            nextScene();
-            autoAdvance();
-        }
-    }, autoAdvanceTime);
-}
-// Uncomment the next line to enable auto-advance
-// autoAdvance();
-*/
