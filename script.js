@@ -1,8 +1,9 @@
 let currentScene = 1;
-const totalScenes = 7;
+const totalScenes = 8;
 
 // Auto-advance timer setting (in milliseconds)
-const AUTO_ADVANCE_TIME = 4000; // 3 seconds
+const AUTO_ADVANCE_TIME = 4000; // 4 seconds
+const AUTO_ADVANCE_TIME_SCENE_7 = 12000; // 12 seconds for Ola's message
 let autoAdvanceTimer = null;
 
 // Initialize
@@ -21,9 +22,11 @@ function startAutoAdvance() {
 
     // Only auto-advance if not on the last scene
     if (currentScene < totalScenes) {
+        // Use longer delay for scene 7 (Ola's message)
+        const delay = currentScene === 7 ? AUTO_ADVANCE_TIME_SCENE_7 : AUTO_ADVANCE_TIME;
         autoAdvanceTimer = setTimeout(() => {
             nextScene();
-        }, AUTO_ADVANCE_TIME);
+        }, delay);
     }
 }
 

@@ -473,8 +473,13 @@ body {
     animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Scene 7 with background */
+/* Scene 7 - Ola's Message */
 .scene-7 {
+    background: #1a1a1a;
+}
+
+/* Scene 8 - Final Reveal */
+.scene-8 {
     background: #1a1a1a;
 }
 
