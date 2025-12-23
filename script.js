@@ -1,42 +1,11 @@
 let currentScene = 1;
-const totalScenes = 8;
-
-// Auto-advance timer setting (in milliseconds)
-const AUTO_ADVANCE_TIME = 4000; // 4 seconds
-const AUTO_ADVANCE_TIME_SCENE_7 = 12000; // 12 seconds for Ola's message
-let autoAdvanceTimer = null;
+const totalScenes = 9;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     updateProgressDots();
     createSnowflakes();
-    startAutoAdvance(); // Start auto-advance timer
 });
-
-// Start auto-advance timer
-function startAutoAdvance() {
-    // Clear any existing timer
-    if (autoAdvanceTimer) {
-        clearTimeout(autoAdvanceTimer);
-    }
-
-    // Only auto-advance if not on the last scene
-    if (currentScene < totalScenes) {
-        // Use longer delay for scene 7 (Ola's message)
-        const delay = currentScene === 7 ? AUTO_ADVANCE_TIME_SCENE_7 : AUTO_ADVANCE_TIME;
-        autoAdvanceTimer = setTimeout(() => {
-            nextScene();
-        }, delay);
-    }
-}
-
-// Stop auto-advance timer
-function stopAutoAdvance() {
-    if (autoAdvanceTimer) {
-        clearTimeout(autoAdvanceTimer);
-        autoAdvanceTimer = null;
-    }
-}
 
 // Navigate to next scene
 function nextScene() {
@@ -55,7 +24,6 @@ function nextScene() {
             currentScene++;
             nextElement.classList.add('active');
             updateProgressDots();
-            startAutoAdvance(); // Restart auto-advance timer
         }, 300);
     }
 }
@@ -75,7 +43,6 @@ function previousScene() {
             currentScene--;
             prevElement.classList.add('active');
             updateProgressDots();
-            startAutoAdvance(); // Restart auto-advance timer
         }, 300);
     }
 }
@@ -94,7 +61,6 @@ function restart() {
         currentScene = 1;
         firstElement.classList.add('active');
         updateProgressDots();
-        startAutoAdvance(); // Restart auto-advance timer
     }, 300);
 }
 
