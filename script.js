@@ -2,7 +2,7 @@ let currentScene = 1;
 const totalScenes = 7;
 
 // Auto-advance timer setting (in milliseconds)
-const AUTO_ADVANCE_TIME = 3000; // 3 seconds
+const AUTO_ADVANCE_TIME = 4000; // 3 seconds
 let autoAdvanceTimer = null;
 
 // Initialize
