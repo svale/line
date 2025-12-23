@@ -335,37 +335,46 @@ body {
 }
 
 .love-note {
-    font-size: 1.5rem;
-    margin: 3rem 0;
+    font-size: 3rem;
+    margin: 3rem auto;
     padding: 0;
     background: transparent;
     line-height: 1.8;
     font-weight: 300;
     color: #fff;
     border: none;
+    text-align: center;
+}
+
+/* Center button on final reveal */
+.final-reveal .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Progress Dots */
 .progress-dots {
     position: fixed;
-    bottom: 3rem;
-    left: 3rem;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
     z-index: 100;
 }
 
 .dot {
-    width: 2px;
-    height: 40px;
+    width: 40px;
+    height: 2px;
     background: rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
 }
 
 .dot.active {
     background: #fff;
-    height: 60px;
+    width: 60px;
 }
 
 /* Animations - only trigger when scene is active */
@@ -561,16 +570,16 @@ body {
     }
 
     .progress-dots {
-        left: 1.5rem;
-        bottom: 2rem;
+        top: 1rem;
+        gap: 0.75rem;
     }
 
     .dot {
-        height: 30px;
+        width: 30px;
     }
 
     .dot.active {
-        height: 45px;
+        width: 45px;
     }
 }
 
